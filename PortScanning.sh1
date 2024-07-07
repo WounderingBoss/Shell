@@ -10,7 +10,6 @@ foreach ($port in $ports) {
         echo "${ip}:${port} - Closed"; 
     } else { 
         echo "${ip}:${port} - Open"; 
-        $socket.Close(); 
         $socket = $null; 
     } 
 }
