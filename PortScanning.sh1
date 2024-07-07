@@ -1,1 +1,17 @@
-$ports=(80,445);$ip="Your IP"; foreach ($port in $ports) {try($socket=New-Object System.Net.Socket.TcpClient($ip,$port));} catch{}; if ($socket -e1 $null) {echo $ip":"$port" -Closed"}else {echo $ip":"$port" -Open";$socket=$null;}}
+$ports = (80, 445); 
+$ip = "Your IP"; 
+foreach ($port in $ports) { 
+    try { 
+        $socket = New-Object System.Net.Sockets.TcpClient($ip, $port); 
+    } catch { 
+        $socket = $null; 
+    } 
+    if ($socket -eq $null) { 
+        echo "${ip}:${port} - Closed"; 
+    } else { 
+        echo "${ip}:${port} - Open"; 
+        $socket.Close(); 
+        $socket = $null; 
+    } 
+}
+
